@@ -31,7 +31,9 @@ func NewBuzhash(r io.Reader) *Buzhash {
 func (b *Buzhash) Reader() io.Reader {
 	return b.r
 }
-
+func (b *Buzhash) ChangeSize(i uint32) (uint32, error) {
+	return 0, nil
+}
 func (b *Buzhash) NextBytes() ([]byte, error) {
 	if b.err != nil {
 		return nil, b.err

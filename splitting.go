@@ -18,6 +18,7 @@ var log = logging.Logger("chunk")
 type Splitter interface {
 	Reader() io.Reader
 	NextBytes() ([]byte, error)
+	ChangeSize(i uint32) (uint32, error)
 }
 
 // SplitterGen is a splitter generator, given a reader.
@@ -71,6 +72,12 @@ func NewSizeSplitter(r io.Reader, size int64) Splitter {
 		r:    r,
 		size: uint32(size),
 	}
+}
+
+func (ss *sizeSplitterv2) ChangeSize(i uint32) (uint32, error) {
+	res := ss.size
+	ss.size = i
+	return res, nil
 }
 
 // NextBytes produces a new chunk.

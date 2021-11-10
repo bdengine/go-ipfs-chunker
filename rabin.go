@@ -38,6 +38,10 @@ func NewRabinMinMax(r io.Reader, min, avg, max uint64) *Rabin {
 	}
 }
 
+func (r *Rabin) ChangeSize(i uint32) (uint32, error) {
+	return 0, nil
+}
+
 // NextBytes reads the next bytes from the reader and returns a slice.
 func (r *Rabin) NextBytes() ([]byte, error) {
 	ch, err := r.r.Next()
