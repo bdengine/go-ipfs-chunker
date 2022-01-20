@@ -39,6 +39,8 @@ func NewRabinMinMax(r io.Reader, min, avg, max uint64) *Rabin {
 }
 
 func (r *Rabin) ChangeSize(i uint32) (uint32, error) {
+	r.r.MinSize = uint64(i)
+	r.r.MaxSize = uint64(i + (i / 2))
 	return 0, nil
 }
 
